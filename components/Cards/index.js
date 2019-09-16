@@ -31,7 +31,7 @@ function makeArticle (eachArticle) {
     // set up structure of section
     articleDiv.appendChild(HeadlineDiv);
     articleDiv.appendChild(authorDiv);
-    imgContainer.appendChild(autherImg);
+    imgContainer.appendChild(authorImg);
 
     // styles
     articleDiv.classList.add("card");
@@ -41,19 +41,20 @@ function makeArticle (eachArticle) {
 
 
     // add content 
-    articleDiv.setAttribute('data-topic', articleObject[0]);
-    HeadlineDiv.textContent = article.headline;
-    authorImg.src = article.authorPhoto;
+    articleDiv.setAttribute('data-topic', eachArticle[0]);
+    HeadlineDiv.textContent = `${article.headline}`;
+    authorImg.innerHTML = `${article.authorPhoto}`;
+    authorSpan.textContent = `${article.authorName}`;
 
-
-  })
-
+    // add to the DOM
+    articleArea.appendChild(articleDiv);
+  });
 
 }
 
 async function requestArticles() {
-  let allArticles = await axios.get('https://lambda-times-backend.herokuapp.com/articles');
-  //console.log(allArticles)
+  let articles = await axios.get('https://lambda-times-backend.herokuapp.com/articles');
+  console.log(articles)
 
   articles = articles.data.articles;
 
@@ -61,24 +62,14 @@ async function requestArticles() {
   (articles);
 
   articlesArray.forEach(article => makeArticle(article));
-
-
-
-
- 
-
-
-  
 }
 
-//console.log(requestArticles());
+console.log(requestArticles());
+
+let articleArea = document.querySelector(".cards-container");
 
 
-
-
-
-
-
+requestArticles();
 
 /* notes:  // /*https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries/
 */
