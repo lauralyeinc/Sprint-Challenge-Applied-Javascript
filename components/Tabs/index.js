@@ -24,7 +24,7 @@ async function TopicRequest () {
   
   topics = topics.data.topics;
   
-  topics.forEach(topic => topicsArea.appendChild(makeTabs(topics)));
+  topics.forEach(topic => topicsArea.appendChild(makeTabs(topic)));
 }
 
 let topicsArea = document.querySelector(".topics");
