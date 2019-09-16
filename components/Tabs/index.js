@@ -7,3 +7,15 @@
 //
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
+async TopicsRequest() => {
+  try {
+    let link = await axios.get('https://lambda-times-backend.herokuapp.com/topics');
+    console.log(typeof(results));
+    console.log(link);
+  } catch (err) {
+    console.error(err);
+}
+
+function makeTopicTabs(nameOfTopic) {
+
+}
