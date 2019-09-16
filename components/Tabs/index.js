@@ -7,25 +7,6 @@
 //
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
-async function TopicsRequest() {
-  try {
-  let tabTopics = await axios.get('https://lambda-times-backend.herokuapp.com/topics');
-  //console.log(typeof(results));
-  //console.log(link);
-  } catch (err) {
-    console.error(err);
-  }
-
-  tabTopics =  topics.data.topics;
-  
-  tabTopics.forEach(topic => topicsDivArea.appendChild(makeTabs(link)));
-
-}
-//console.log(TopicsRequest());
-let topicsDivArea = document.querySelector(".topics");
-
-TopicsRequest();
-
 
 function makeTabs (topicSubject) {
   let subjectTab = document.createElement("div");
@@ -36,4 +17,21 @@ function makeTabs (topicSubject) {
 
   return subjectTab; 
 }
+
+
+async function TopicRequest () {
+  let topics = await axios.get('https://lambda-times-backend.herokuapp.com/topics');
+  
+  //console.log(topics);
+  // const topicsArray = Array.from(topics);
+  //   console.log('here:' + topicsArray);
+
+  topics = topics.data.topics;
+  
+  topics.forEach(topic => topicsArea.appendChild(makeTabs(topics)));
+}
+
+let topicsArea = document.querySelector(".topics");
+
+TopicRequest()
 
