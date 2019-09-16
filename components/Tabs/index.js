@@ -22,10 +22,6 @@ function makeTabs (topicSubject) {
 async function TopicRequest () {
   let topics = await axios.get('https://lambda-times-backend.herokuapp.com/topics');
   
-  //console.log(topics);
-  // const topicsArray = Array.from(topics);
-  //   console.log('here:' + topicsArray);
-
   topics = topics.data.topics;
   
   topics.forEach(topic => topicsArea.appendChild(makeTabs(topics)));
