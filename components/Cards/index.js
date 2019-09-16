@@ -18,7 +18,7 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-function makeArticle (eachArticle) {  
+function makeArticle(eachArticle) {  
   eachArticle[1].forEach(article => {
     // create the elements
     let articleDiv = document.createElement("div");
@@ -43,8 +43,14 @@ function makeArticle (eachArticle) {
     // add content 
     articleDiv.setAttribute('data-topic', eachArticle[0]);
     HeadlineDiv.textContent = `${article.headline}`;
-    authorImg.innerHTML = `${article.authorPhoto}`;
-    authorSpan.textContent = `${article.authorName}`;
+
+
+    // authorSpan.textContent = `By ${article.authorName}`;
+    authorSpan.setAttribute('data-top', eachArticle[0]);
+    
+    authorImg.src = `${article.authorPhoto}`;
+
+  
 
     // add to the DOM
     articleArea.appendChild(articleDiv);
